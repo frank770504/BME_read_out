@@ -439,19 +439,10 @@ int main(void)
 	struct bme280_t bme280;
 	int res = 0;
 	res = bme280_init(&bme280);
-
-	if(!res)
+	while(1)
 	{
-try:
-	   if(socket_server())
-	   {
-	       printf("Fail to create server\n");
-		   goto try;
-	   }
+		bme280_read_data();
+		usleep((useconds_t)(500000));
 	}
-	else
-		printf("Fail to init BME280\n");
-end:
-    printf("Exit!\n");
     return 0;
 }
